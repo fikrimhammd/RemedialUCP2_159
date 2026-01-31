@@ -29,7 +29,7 @@ object DestinasiListBuku : DestinasiNavigasi {
 
 object DestinasiDetailBuku : DestinasiNavigasi {
     override val route: String = "detail_buku"
-    override val titleRes: Int = R.string.app_name // Using app name as placeholder
+    override val titleRes: Int = R.string.app_name
     const val bukuIdArg = "bukuId"
     val routeWithArgs = "$route/{$bukuIdArg}"
 }
@@ -39,4 +39,18 @@ object DestinasiEditBuku : DestinasiNavigasi {
     override val titleRes: Int = R.string.app_name
     const val bukuIdArg = "bukuId"
     val routeWithArgs = "$route/{$bukuIdArg}"
+}
+
+object DestinasiDetailPengarang : DestinasiNavigasi {
+    override val route: String = "detail_pengarang"
+    override val titleRes: Int = R.string.app_name
+    const val pengarangIdArg = "pengarangId"
+    val routeWithArgs = "$route/{$pengarangIdArg}"
+}
+
+object DestinasiEditPengarang : DestinasiNavigasi {
+    override val route: String = "edit_pengarang"
+    override val titleRes: Int = R.string.app_name
+    const val pengarangIdArg = "pengarangId"
+    val routeWithArgs = "$route/{$pengarangIdArg}"
 }

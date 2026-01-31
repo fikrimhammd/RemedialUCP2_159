@@ -1,5 +1,6 @@
 package com.example.ucp2.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -35,6 +36,7 @@ import com.example.ucp2.viewmodel.provider.PenyediaViewModel
 @Composable
 fun ListPengarangScreen(
     navigateBack: () -> Unit,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomePengarangViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -54,6 +56,7 @@ fun ListPengarangScreen(
     ) { innerPadding ->
         ListPengarangBody(
             listPengarang = homeUiState.listPengarang,
+            onItemClick = onItemClick,
             modifier = Modifier.padding(innerPadding)
         )
     }
@@ -62,6 +65,7 @@ fun ListPengarangScreen(
 @Composable
 fun ListPengarangBody(
     listPengarang: List<Pengarang.Pengarang>,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -78,7 +82,7 @@ fun ListPengarangBody(
                 verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
             ) {
                 items(listPengarang) { pengarang ->
-                    PengarangCard(pengarang = pengarang)
+                    PengarangCard(pengarang = pengarang, onClick = { onItemClick(pengarang.id) })
                 }
             }
         }
@@ -88,10 +92,13 @@ fun ListPengarangBody(
 @Composable
 fun PengarangCard(
     pengarang: Pengarang.Pengarang,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(

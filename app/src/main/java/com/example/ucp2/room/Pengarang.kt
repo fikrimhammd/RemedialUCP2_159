@@ -28,5 +28,11 @@ class Pengarang {
 
         @Query("SELECT * FROM tblPengarang WHERE id = :id")
         fun getPengarang(id: Int): Flow<Pengarang>
+
+        @androidx.room.Update
+        suspend fun update(pengarang: Pengarang)
+
+        @androidx.room.Delete
+        suspend fun delete(pengarang: Pengarang)
     }
 }

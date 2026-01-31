@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 interface RepositoriLibrary {
 
     suspend fun insertPengarang(pengarang: Pengarang.Pengarang)
+    suspend fun updatePengarang(pengarang: Pengarang.Pengarang)
+    suspend fun deletePengarang(pengarang: Pengarang.Pengarang)
     fun getAllPengarang(): Flow<List<Pengarang.Pengarang>>
     fun getPengarang(id: Int): Flow<Pengarang.Pengarang>
 

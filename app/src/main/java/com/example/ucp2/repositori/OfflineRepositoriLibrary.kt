@@ -11,6 +11,8 @@ class OfflineRepositoriLibrary(
     private val bukuDao: Buku.BukuDao
 ) : RepositoriLibrary {
     override suspend fun insertPengarang(pengarang: Pengarang.Pengarang) = pengarangDao.insert(pengarang)
+    override suspend fun updatePengarang(pengarang: Pengarang.Pengarang) = pengarangDao.update(pengarang)
+    override suspend fun deletePengarang(pengarang: Pengarang.Pengarang) = pengarangDao.delete(pengarang)
     override fun getAllPengarang(): Flow<List<Pengarang.Pengarang>> = pengarangDao.getAllPengarang()
     override fun getPengarang(id: Int): Flow<Pengarang.Pengarang> = pengarangDao.getPengarang(id)
 

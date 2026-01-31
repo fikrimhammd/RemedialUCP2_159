@@ -8,7 +8,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.ucp2.view.DetailBukuScreen
+import com.example.ucp2.view.DetailPengarangScreen
 import com.example.ucp2.view.EditBukuScreen
+import com.example.ucp2.view.EditPengarangScreen
 import com.example.ucp2.view.EntryBukuScreen
 import com.example.ucp2.view.EntryPengarangScreen
 import com.example.ucp2.view.LibraryHomeScreen
@@ -43,7 +45,8 @@ fun PengelolaHalaman(
         }
         composable(DestinasiListPengarang.route) {
             ListPengarangScreen(
-                navigateBack = { navController.popBackStack() }
+                navigateBack = { navController.popBackStack() },
+                onItemClick = { navController.navigate("${DestinasiDetailPengarang.route}/$it") }
             )
         }
         composable(DestinasiListBuku.route) {
@@ -70,6 +73,27 @@ fun PengelolaHalaman(
             })
         ) {
             EditBukuScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+        composable(
+            route = DestinasiDetailPengarang.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiDetailPengarang.pengarangIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            DetailPengarangScreen(
+                navigateBack = { navController.popBackStack() },
+                onEditClick = { navController.navigate("${DestinasiEditPengarang.route}/$it") }
+            )
+        }
+        composable(
+            route = DestinasiEditPengarang.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiEditPengarang.pengarangIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            EditPengarangScreen(
                 navigateBack = { navController.popBackStack() }
             )
         }
