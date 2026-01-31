@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Perpustakaan UCP 2</string>
+    <string name="entry_pengarang">Tambah Pengarang</string>
+    <string name="entry_buku">Tambah Buku</string>
+    <string name="home_buku">Daftar Buku</string>
+    <string name="home_pengarang">Daftar Pengarang</string>
+    <string name="nama_pengarang">Nama Pengarang*</string>
+    <string name="email">Email*</string>
+    <string name="bidang_keahlian">Bidang Keahlian*</string>
+    <string name="judul_buku">Judul Buku*</string>
+    <string name="isbn">ISBN*</string>
+    <string name="kategori">Kategori*</string>
+    <string name="status">Status*</string>
+    <string name="required_field">* wajib diisi</string>
+    <string name="btn_submit">Simpan</string>
+    <string name="back">Kembali</string>
+    <string name="delete">Hapus</string>
+    <string name="update">Edit</string>
+    <string name="perhatian">Perhatian</string>
+    <string name="konfirmasi_hapus">Apakah anda yakin ingin menghapus data ini?</string>
+    <string name="data_kosong">Belum ada data tersedia.</string>
+</resources>
