@@ -1,6 +1,5 @@
 package com.example.ucp2.view
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,8 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.filled.PersonSearch
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,6 +35,8 @@ import com.example.ucp2.view.route.DestinasiHome
 fun LibraryHomeScreen(
     onAddPengarangClick: () -> Unit,
     onAddBukuClick: () -> Unit,
+    onListPengarangClick: () -> Unit,
+    onListBukuClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -51,29 +53,44 @@ fun LibraryHomeScreen(
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Selamat Datang di Sistem Perpustakaan",
+                text = "Sistem Manajemen Perpustakaan",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
             
-            Spacer(modifier = Modifier.size(24.dp))
+            Spacer(modifier = Modifier.size(16.dp))
+            
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp)) {
+                MenuCard(
+                    title = "Tambah Pengarang",
+                    icon = Icons.Default.Person,
+                    onClick = onAddPengarangClick,
+                    modifier = Modifier.weight(1f)
+                )
+                MenuCard(
+                    title = "Tambah Buku",
+                    icon = Icons.Default.Book,
+                    onClick = onAddBukuClick,
+                    modifier = Modifier.weight(1f)
+                )
+            }
             
             MenuCard(
-                title = "Tambah Pengarang",
-                description = "Kelola data penulis buku",
-                icon = Icons.Default.Person,
-                onClick = onAddPengarangClick
+                title = "Daftar Pengarang",
+                description = "Lihat semua pengarang yang terdaftar",
+                icon = Icons.Default.PersonSearch,
+                onClick = onListPengarangClick
             )
             
             MenuCard(
-                title = "Tambah Buku",
-                description = "Kelola koleksi buku perpustakaan",
-                icon = Icons.Default.Book,
-                onClick = onAddBukuClick
+                title = "Daftar Buku",
+                description = "Lihat semua koleksi buku",
+                icon = Icons.Default.List,
+                onClick = onListBukuClick
             )
         }
     }
@@ -82,29 +99,32 @@ fun LibraryHomeScreen(
 @Composable
 fun MenuCard(
     title: String,
-    description: String,
+    description: String = "",
     icon: ImageVector,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Row(
+        Column(
             modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(48.dp),
+                modifier = Modifier.size(40.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
-            Column(modifier = Modifier.padding(start = 16.dp)) {
-                Text(text = title, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                Text(text = description, style = MaterialTheme.typography.bodyMedium)
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(text = title, fontWeight = FontWeight.Bold, fontSize = 16.sp, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+            if (description.isNotEmpty()) {
+                Text(text = description, style = MaterialTheme.typography.bodySmall, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
             }
         }
     }
