@@ -1,5 +1,6 @@
 package com.example.ucp2.view
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -108,6 +109,3 @@ fun MenuCard(
         }
     }
 }
-
-// Add missing Arrangement import
-import androidx.compose.foundation.layout.Arrangement

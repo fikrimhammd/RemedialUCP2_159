@@ -17,7 +17,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             UCP2Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // We can pass innerPadding if needed, but PengelolaHalaman handles its own Scaffolds
                     PengelolaHalaman()
                 }
             }
